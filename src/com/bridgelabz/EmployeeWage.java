@@ -14,8 +14,10 @@ public class EmployeeWage {
         int wage = 0;
         int empHrs = 0;
         int monthlyWage = 0;
+        int totalHrs = 0;
+        int workingDays = 0;
 
-        for(int i = 0; i<20; i++) {
+        while(totalHrs<100 && workingDays<20) {
 
             int empCheck = (int)(Math.random() * 3); //Generating Random Number
 
@@ -23,10 +25,12 @@ public class EmployeeWage {
                 case IS_FULL_TIME:
                     System.out.println("The employee is doing full time");
                     empHrs = 8;
+                    workingDays++;
                     break;
                 case IS_PART_TIME:
                     System.out.println("Employee is doing part time");
                     empHrs = 4;
+                    workingDays++;
                     break;
                 default:
                     System.out.println("Employee is Absent");
@@ -37,8 +41,11 @@ public class EmployeeWage {
             System.out.println("The employee wage is  " + wage);
             System.out.println("---------------------------------------------------------");
 
+            totalHrs += empHrs;
             monthlyWage += wage;
         }
-        System.out.println(monthlyWage);
+        System.out.println("Monthly hour is " +totalHrs);
+        System.out.println("Total working days are " +workingDays);
+        System.out.println(" Monthly wage is " +monthlyWage);
     }
 }
