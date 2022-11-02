@@ -1,10 +1,12 @@
 package com.bridgelabz;
 
-public class EmployeeWage {
-
+class Company {
     static final int IS_FULL_TIME = 1; // Constance
     static final int IS_PART_TIME = 2;
     static final int EMP_WAGE_HRS = 20;
+}
+public class EmployeeWage extends Company {
+
 
     public static void main(String[] args) {
         //Use case 4 code with Switch statement
