@@ -26,4 +26,5 @@ public class Data {
     void Dailyhrs(){
         dailyhrs = new  int[]{8, 8, 8};
     }
+
 }

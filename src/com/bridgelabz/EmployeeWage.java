@@ -44,8 +44,6 @@ public class EmployeeWage extends Data {
         obj.Hours();
         obj.Dailyhrs();
 
-
-
         System.out.println("The company is " + obj.name[i]);
 
         while (totalWorkinghrs < obj.workingHours[i] && totalDays < obj.maxWorkingDays[i]) {
@@ -74,5 +72,8 @@ public class EmployeeWage extends Data {
         System.out.println("Total working days are " + totalDays);
         System.out.println("Total working hours are " + totalWorkinghrs);
         System.out.println("---------------------------------------------------");
+
+        
+
     }
 }
