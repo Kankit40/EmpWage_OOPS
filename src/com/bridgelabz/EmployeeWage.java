@@ -1,51 +1,79 @@
 package com.bridgelabz;
+import java.util.Scanner;
 
-public class EmployeeWage {
+public class EmployeeWage extends Data {
+    static int totalWage;
+    int Present(int x, int y) {
+        int dailyWage = x * y * 1;
+        System.out.println("The daily wage is " + dailyWage);
+        return dailyWage;
+    }
 
-    static final int IS_FULL_TIME = 1; // Constance
-    static final int IS_PART_TIME = 2;
-    static final int EMP_WAGE_HRS = 20;
+    int Absent(int x, int y) {
+        int dailyWage = x * y * 0;
+        System.out.println("The daily wage is " + dailyWage);
+        return dailyWage;
+    }
+
+    int Halfday(int x, int y) {
+        int dailyWage = (x * y * 1) / 2;
+        System.out.println("The daily wage is " + dailyWage);
+        return dailyWage;
+    }
 
     public static void main(String[] args) {
-        //Use case 4 code with Switch statement
 
-        System.out.println("Welcome to Employee wage");
+        System.out.println("Welcome to Exployee Wage");
+        System.out.println("Enter the company number");
+        System.out.println("0. Samsung");
+        System.out.println("1. Nokia");
+        System.out.println("2. Micromax");
 
-        int wage = 0;
-        int empHrs = 0;
-        int monthlyWage = 0;
-        int totalHrs = 0;
-        int workingDays = 0;
+        Scanner sc = new Scanner(System.in);
+        int i = sc.nextInt();
+        int totalWage1 = 0;
+        int totalWorkinghrs = 0;
+        int totalDays = 0;
+        int dailyHours = 0;
 
-        while(totalHrs<100 && workingDays<20) {
+        EmployeeWage obj1 = new EmployeeWage();
+        Data obj = new Data();
+        obj.Name();
+        obj.Wage();
+        obj.Days();
+        obj.Hours();
+        obj.Dailyhrs();
 
-            int empCheck = (int)(Math.random() * 3); //Generating Random Number
+        System.out.println("The company is " + obj.name[i]);
 
-            switch (empCheck) {
-                case IS_FULL_TIME:
-                    System.out.println("The employee is doing full time");
-                    empHrs = 8;
-                    workingDays++;
-                    break;
-                case IS_PART_TIME:
-                    System.out.println("Employee is doing part time");
-                    empHrs = 4;
-                    workingDays++;
-                    break;
-                default:
-                    System.out.println("Employee is Absent");
-                    empHrs = 0;
+        while (totalWorkinghrs < obj.workingHours[i] && totalDays < obj.maxWorkingDays[i]) {
+
+            int o = (int) (Math.random() * 3);
+
+            if (o == 1) {
+                totalWage = obj1.Present(obj.dailyhrs[i], obj.wage[i]);
+                dailyHours = obj.dailyhrs[i];
+                totalDays++;
+
+            } else if (o == 2) {
+                totalWage = obj1.Absent(obj.dailyhrs[i], obj.wage[i]);
+                dailyHours = 0;
+
+            } else {
+                totalWage = obj1.Halfday(obj.dailyhrs[i], obj.wage[i]);
+                totalDays++;
+                dailyHours = (obj.dailyhrs[i])/2;
             }
-
-            wage = empHrs * EMP_WAGE_HRS;
-            System.out.println("The employee wage is  " + wage);
-            System.out.println("---------------------------------------------------------");
-
-            totalHrs += empHrs;
-            monthlyWage += wage;
+            totalWage1 = totalWage1 + totalWage;
+            totalWorkinghrs = totalWorkinghrs + dailyHours;
         }
-        System.out.println("Monthly hour is " +totalHrs);
-        System.out.println("Total working days are " +workingDays);
-        System.out.println(" Monthly wage is " +monthlyWage);
+
+        System.out.println("Total wage is " +totalWage1);
+        System.out.println("Total working days are " + totalDays);
+        System.out.println("Total working hours are " + totalWorkinghrs);
+        System.out.println("---------------------------------------------------");
+
+        
+
     }
 }
