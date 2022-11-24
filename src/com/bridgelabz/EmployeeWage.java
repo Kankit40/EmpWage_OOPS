@@ -1,107 +1,35 @@
 package com.bridgelabz;
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.Random;
 
-public class EmployeeWage extends InterfaceEmployeeWage {
+import java.util.Scanner;
 
-    static final int EMP_FULL_TIME = 1;
-    static final int EMP_PART_TIME = 2;
+public class EmployeeWage extends Data{
 
-    private ArrayList<CompanyEmployeeWage> companyEmployeeWageArrayList;
-
-    public EmployeeWage() {
-
-        companyEmployeeWageArrayList = new ArrayList<CompanyEmployeeWage>();
-    }
-
-    public void addCompanyEmpWage(String company, int wagePerHour, int workingDay, int totalWorkHrs) {
-
-        CompanyEmployeeWage companyEmployeeWage = new CompanyEmployeeWage(company, wagePerHour, workingDay,
-                totalWorkHrs);
-        companyEmployeeWageArrayList.add(companyEmployeeWage);
-    }
-
-    public void calculateEmpWage() {
-        for (int i = 0; i < companyEmployeeWageArrayList.size(); i++) {
-
-            CompanyEmployeeWage companyEmployeeWage = companyEmployeeWageArrayList.get(i);
-            companyEmployeeWage.setTotalEmpWage(this.calculateEmpWage(companyEmployeeWage));
-            System.out.println("Company Name :" + companyEmployeeWage.company);
-            displayDailyWageForCompany(companyEmployeeWage);
-            System.out.println(companyEmployeeWage.company + " Total Wage is " + companyEmployeeWage.totalWage);
-        }
-    }
-
-    public void displayDailyWageForCompany(CompanyEmployeeWage companyEmployeeWage) {
-        for (int i = 0; i < companyEmployeeWage.empDailyWage.size(); i++) {
-            int day = i + 1;
-            System.out.println("Daily Wage For Day." + day + ":" + companyEmployeeWage.empDailyWage.get(i));
-        }
-    }
-
-    public int calculateEmpWage(CompanyEmployeeWage companyEmployeeWage) {
-
-        int empWage = 0;
-        int totalWorkingHours = 0;
-        int totalWorkingDays = 0;
-
-        while (totalWorkingDays < companyEmployeeWage.workingDay
-                && totalWorkingHours < companyEmployeeWage.totalWorkHrs) {
-
-            Random random = new Random();
-            int empPresent = random.nextInt(3);
-            System.out.println("Random Value for Employee Attendance is :" + empPresent);
-
-            int x;
-            switch (empPresent) {
-
-                case EMP_FULL_TIME:
-
-                    x = companyEmployeeWage.wagePerHour * 8;
-                    empWage = empWage + x;
-                    totalWorkingHours = totalWorkingHours + 8;
-                    System.out.println("Employee is present and the wage is : " + empWage);
-                    totalWorkingDays++;
-                    break;
-
-                case EMP_PART_TIME:
-                    x = companyEmployeeWage.wagePerHour * 4;
-                    empWage = empWage + x;
-                    totalWorkingHours = totalWorkingHours + 4;
-                    System.out.println("Employee is Part time present and the wage is : " + empWage);
-                    totalWorkingDays++;
-                    break;
-
-                default:
-                    System.out.println("Employee is absent and the wage is : " + empWage);
-                    break;
-
-            }
-
-        }
-
-        System.out.println("Total Working Days :" + totalWorkingDays);
-        System.out.println("Total Working Hours :" + companyEmployeeWage.totalWorkHrs);
-        System.out.println("Total Employee Wage for company " + companyEmployeeWage.company + " is :" + empWage);
-
-        return empWage;
-    }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Employee Wage calculation");
-        EmployeeWage empWage = new EmployeeWage();
-        empWage.addCompanyEmpWage("BIG BASKET", 40, 22, 140);
-        empWage.addCompanyEmpWage("AMAZON", 90, 21, 222);
-        empWage.addCompanyEmpWage("WIPRO", 58, 22, 175);
-        empWage.calculateEmpWage();
 
+        int exit = 99;
+        while (exit == 99){
+            System.out.println("Enter the following digits :");
+            System.out.println("01: Enter company Data");
+            System.out.println("02: Fetch Company Data");
+            System.out.println("03: Compute wage");
+            System.out.println("04: Exit");
+
+            Scanner sc1 = new Scanner(System.in);
+            int inp = sc1.nextInt();
+            EmployeeWage obj = new EmployeeWage();
+
+            if (inp == 1){
+                obj.AddData();
+
+            } else if (inp == 2) {
+                obj.Display();
+
+            } else if (inp == 3) {
+                obj.ComputeWage();
+            } else if (inp == 4) {
+                exit = 100;
+            }
+        }
     }
-
-    @Override
-    public void calculateEmployeeWage() {
-        // TODO Auto-generated method stub
-
-    }
-
 }
